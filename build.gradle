@@ -32,11 +32,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     // thymeleaf 추가 - 2025-02-19
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'  // 사용자가 만든 configuration 도 자동완성 잘 되게 - 2025-02-20
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // queryDSL 설정 - 2025-02-18
     implementation "com.querydsl:querydsl-jpa:5.1.0:jakarta"
