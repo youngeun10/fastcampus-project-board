@@ -29,15 +29,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     // thymeleaf 추가 - 2025-02-19
+    implementation 'org.springframework.boot:spring-boot-starter-security'      // spring security 추가 - 2025-02-21
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'      // spring security 추가 - 2025-02-21
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'  // 사용자가 만든 configuration 도 자동완성 잘 되게 - 2025-02-20
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // queryDSL 설정
+    // queryDSL 설정 - 2025-02-18
     implementation "com.querydsl:querydsl-jpa:5.1.0:jakarta"
     implementation "com.querydsl:querydsl-core"
     implementation "com.querydsl:querydsl-collections"
