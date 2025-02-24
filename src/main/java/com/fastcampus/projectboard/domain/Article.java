@@ -13,7 +13,7 @@ import java.util.Set;
 @ToString
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashTag"),
+        @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -26,7 +26,7 @@ public class Article extends AuditingFields {
     @Setter @Column(nullable = false) private String title;
     @Setter @Column(nullable = false, length = 10000) private String content;
 
-    @Setter private String hashTag;
+    @Setter private String hashtag;
 
     @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
@@ -36,14 +36,14 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
-    private Article(String title, String content, String hashTag) {
+    private Article(String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
-        this.hashTag = hashTag;
+        this.hashtag = hashtag;
     }
 
-    public static Article of(String title, String content, String hashTag) {
-        return new Article(title, content, hashTag);
+    public static Article of(String title, String content, String hashtag) {
+        return new Article(title, content, hashtag);
     }
 
     @Override
