@@ -13,7 +13,7 @@ import java.util.Set;
 @ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashTag"),
+        @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -28,7 +28,7 @@ public class Article extends AuditingFields {
     @Setter @Column(nullable = false) private String title;
     @Setter @Column(nullable = false, length = 10000) private String content;
 
-    @Setter private String hashTag;
+    @Setter private String hashtag;
 
     @ToString.Exclude
     @OrderBy("createdAt DESC")
@@ -38,11 +38,12 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
+
     private Article(UserAccount userAccount, String title, String content, String hashTag) {
         this.userAccount = userAccount;
         this.title = title;
         this.content = content;
-        this.hashTag = hashTag;
+        this.hashtag = hashtag;
     }
 
     public static Article of(UserAccount userAccount, String title, String content, String hashTag) {
