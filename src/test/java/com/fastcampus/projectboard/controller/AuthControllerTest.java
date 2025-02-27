@@ -25,7 +25,7 @@ public class AuthControllerTest {
 
     @DisplayName("[view][GET] 로그인 페이지 - 정상 호출")
     @Test
-    public void givenNothing_whenTringToLogIn_thenReturnLogInView() throws Exception {
+    public void givenNothing_whenTryingToLogIn_thenReturnLogInView() throws Exception {
         // Given
 
         // When & Then

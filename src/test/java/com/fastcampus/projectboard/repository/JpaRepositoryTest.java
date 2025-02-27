@@ -25,7 +25,8 @@ class JpaRepositoryTest {
 
     public JpaRepositoryTest(
             @Autowired ArticleRepository articleRepository,
-            @Autowired ArticleCommentRepository articleCommentRepository, UserAccountRepository userAccountRepository
+            @Autowired ArticleCommentRepository articleCommentRepository,
+            @Autowired UserAccountRepository userAccountRepository
     ) {
         this.articleRepository = articleRepository;
         this.articleCommentRepository = articleCommentRepository;
@@ -36,25 +37,28 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenSelecting_thenWorksFine() {
         // Given
-        long previousCount = articleCommentRepository.count();
-        UserAccount userAccount = userAccountRepository.save(UserAccount.of("young", "pw", null, null, null));
-        Article article = Article.of(userAccount, "new article", "new content", "#sprint");
 
         // When
-        articleRepository.save(article);
+//        articleRepository.save(article);
+        List<Article> articles = articleRepository.findAll();
 
         // Then
-        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
+//        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
+        assertThat(articles)
+                .isNotNull()
+                .hasSize(123);
     }
 
     @DisplayName("insert 테스트")
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
-        long previousCount = articleRepository.count();
+        long previousCount = articleCommentRepository.count();
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("young", "pw", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
         // When
-        Article savedArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
+        articleRepository.save(article);
 
         // Then
         assertThat(articleRepository.count())
@@ -67,14 +71,14 @@ class JpaRepositoryTest {
         // Given
         Article article = articleRepository.findById(1L).orElseThrow();
         String updatedHashtag = "#springboot";
-        article.setHashTag(updatedHashtag);
+        article.setHashtag(updatedHashtag);
 
         // When
         Article savedArticle = articleRepository.saveAndFlush(article);
 
         // Then
         assertThat(savedArticle)
-                .hasFieldOrPropertyWithValue("hashTag", updatedHashtag);
+                .hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
     }
 
     @DisplayName("delete 테스트")

@@ -4,7 +4,6 @@ import com.fastcampus.projectboard.domain.Article;
 import com.fastcampus.projectboard.domain.UserAccount;
 import com.fastcampus.projectboard.domain.type.SearchType;
 import com.fastcampus.projectboard.dto.ArticleDto;
-import com.fastcampus.projectboard.dto.ArticleUpdateDto;
 import com.fastcampus.projectboard.dto.ArticleWithCommentsDto;
 import com.fastcampus.projectboard.dto.UserAccountDto;
 import com.fastcampus.projectboard.repository.ArticleRepository;
@@ -33,11 +32,6 @@ class ArticleServiceTest {
 
     @Mock private ArticleRepository articleRepository;
 
-    /*
-    *
-        홈 버튼 -> 게시판 페이지로 리다이렉션
-        정렬 기능
-    * */
     @DisplayName("검색어 없이 게시글을 검색하면, 게시글 페이지를 반환한다.")
     @Test
     void givenNoSearchParameters_whenSearchingArticles_thenReturnArticlePage() {

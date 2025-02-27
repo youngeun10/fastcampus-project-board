@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org. springframework. data. domain. Pageable;
 
-import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -33,6 +33,7 @@ class ArticleControllerTest {
 
     private final MockMvc mvc;
 
+    // srpingBoot 3.6 에서는 @MockImport로 변경하기
     @MockBean private ArticleService articleService;
 
     public ArticleControllerTest(@Autowired MockMvc mvc) {
@@ -58,7 +59,7 @@ class ArticleControllerTest {
     @Test
     public void givenNothing_whenRequestingArticleView_thenReturnArticleView() throws Exception {
         // Given
-        Long articleId = 1L;
+        long articleId = 1L;
         given(articleService.getArticle(articleId)).willReturn(createArticleWithCommentsDto());
 
         // When & Then

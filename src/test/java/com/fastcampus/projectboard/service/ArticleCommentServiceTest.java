@@ -41,7 +41,7 @@ class ArticleCommentServiceTest {
         // Given
         Long articleId = 1L;
         ArticleComment expected = createArticleComment("content");
-        BDDMockito.given(articleRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
+        BDDMockito.given(articleCommentRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
 
         // When
         List<ArticleCommentDto> actual = sut.searchArticleComments(1L);
@@ -50,23 +50,23 @@ class ArticleCommentServiceTest {
         assertThat(actual)
                 .hasSize(1)
                 .first().hasFieldOrPropertyWithValue("content", expected.getContent());
-        then(articleRepository).should().findById(articleId);
+        then(articleCommentRepository).should().findByArticle_Id(articleId);
     }
 
     @DisplayName("댓글 정보를 입력하면, 댓글을 저장한다.")
     @Test
     void givenArticleCommentInfo_whenSavingArticleComment_thenSavesArticleComment() {
         // Given
-        ArticleCommentDto dto = createdArticleCommentDto("댓글");
+        ArticleCommentDto dto = createArticleCommentDto("댓글");
         BDDMockito.given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
-        BDDMockito.given(articleRepository.save(any(Article.class))).willReturn(null);
+        BDDMockito.given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
 
         // When
         sut.saveArticleComment(dto);
 
         // Then
         then(articleRepository).should().getReferenceById(dto.articleId());
-        then(articleRepository).should().save(any(Article.class));
+        then(articleCommentRepository).should().save(any(ArticleComment.class));
     }
 
     @DisplayName("댓글 저장을 시도했는데 맞는 게시글이 없으면, 경고 로그를 찍고 아무것도 안 한다.")
@@ -160,7 +160,7 @@ class ArticleCommentServiceTest {
         );
     }
 
-    private Article createArticleComment(String content) {
+    private ArticleComment createArticleComment(String content) {
         return ArticleComment.of(
                 Article.of(createUserAccount(), "title", "content", "hashtag"),
                 createUserAccount(),

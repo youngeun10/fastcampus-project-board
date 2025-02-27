@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.awt.print.Pageable;
-import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 @RequiredArgsConstructor
 @RequestMapping("/articles")
@@ -38,8 +37,8 @@ public class ArticleController {
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map) {
         ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticle(articleId));
-        map.addAttribute("article", "article"); // TODO: 구현할 때 여기에 실제 데이터 넣기
-        map.addAttribute("articleComments", article.articleCommentResponses());
+        map.addAttribute("article", article); // TODO: 구현할 때 여기에 실제 데이터 넣기
+        map.addAttribute("articleComments", article.articleCommentsResponses());
 
         return "articles/detail";
     }
