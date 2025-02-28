@@ -32,6 +32,5 @@
               th:href="@{/articles(page=${articles.number + 1})}"
               th:class="'page-link' + (${articles.number} >= ${articles.totalPages - 1} ? ' disabled' : '')"
         />
-        </attr>
     </attr>
 </thlogic>
