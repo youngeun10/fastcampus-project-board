@@ -100,7 +100,7 @@ class ArticleCommentServiceTest {
         // Then
         assertThat(articleComment.getContent())
                 .isNotEqualTo(oldContent)
-                .isNotEqualTo(updatedContent);
+                .isEqualTo(updatedContent);
         then(articleCommentRepository).should().getReferenceById(dto.id());
     }
 
